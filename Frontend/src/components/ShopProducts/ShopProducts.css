@@ -1,0 +1,28 @@
+.product1{
+    margin-top: 30px;
+    margin-bottom: 200px;
+}
+.product1 h2{
+    color: gray;
+    text-align: center;
+    font-size: max(2.0vw,24px);
+    font-weight: 400;
+}
+.product1 span{
+    color: rgb(255, 145, 71);
+}
+.product1 hr{
+    margin: 10px 550px;
+    height: 2px;
+    background-color: rgb(255, 145, 71);;
+    border: none;
+    margin-bottom: 50px; 
+}
+.products-display1{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    margin-top: 30px;
+    gap: 30px;
+    row-gap: 50px;
+    animation: fadeIn 1s;
+}

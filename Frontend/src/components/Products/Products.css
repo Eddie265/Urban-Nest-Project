@@ -1,0 +1,33 @@
+.products{
+    margin-top: 30px;
+    animation: fadeIn 1s;
+}
+.products h2{
+    font-size: max(1.5vw,24px);
+    font-weight: 500;
+}
+.product-display{
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
+    margin-top: 30px;
+    gap: 30px;
+    row-gap: 50px;
+}
+.button{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button button{
+    border: 1px solid #e6e9f2;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #6c6e72;
+    padding: 10px 20px;
+    font-size: max(1vw,18px);
+    transition: 0.3s ease;
+}
+.button button:hover{
+    background: #e0e0e0;
+}

@@ -1,0 +1,76 @@
+.product-item1{
+    cursor: pointer;
+    width: 100%;
+    margin: auto;
+    border: none;
+    background: transparent;
+    /* border-radius: 15px; */
+    /* box-shadow: 0px 0px 10px #00000015; */
+    transition: 0.3s;
+    position: relative;
+}
+.products-item-img-container1{
+    border-radius: 15px;
+    background: #f0f1f2;
+}
+.product-image1{
+    width: 100%;
+}
+.product-item1 button{
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    right: 8px;
+    bottom: 15px;
+    transition: 0.3s ease;
+}
+.name1{
+    font-size: 16px;
+    font-weight: 500;
+    color: #4c4d4e;
+}
+.price1{
+    font-size: 14px;
+    font-weight: 400;
+}
+.rate1{
+    color: #aeb1b3;
+}
+.product-item1 button:hover{
+    background-color: #e2e5e7;
+}
+.heart-icon1{
+    margin: 20px 10px;
+    font-weight: 200;
+    padding: 10px;
+    position: absolute;
+    top: -8px;
+    right: 8px;
+    width: 35px;
+    background: white;
+    border-radius: 50%;
+}
+.products-item-img-container1 .add{
+    width: 35px;
+    position: absolute;
+    bottom: 100px;
+    right: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.item-counter{
+    position: absolute;
+    bottom: 100px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px;
+    background-color: white;
+    border-radius: 50px;
+}
+.item-counter img{
+    width: 30px;
+}

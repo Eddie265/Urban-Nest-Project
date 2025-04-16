@@ -1,0 +1,113 @@
+.logo{
+    width: 300px;
+}
+.navbar{
+    padding: 20px 0 ;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color:  #49557e;
+}
+.navbar-menu{
+    display: flex;
+    gap: 30px;
+    cursor: pointer;
+}
+.navbar-menu a{
+    color: #49557e;
+    text-decoration: none;
+}
+.navbar-menu button{
+    cursor: pointer;
+    color: #49557e;
+    background: transparent;
+    padding: 3px;
+    border: 1px solid #49557e;
+    border-radius: 50px;
+    transition: 0.3s ease;
+}
+.navbar-menu button:hover{
+    background: rgb(255, 145, 71);
+    border: none;
+    color: white;
+    
+}
+.search-icon{
+    font-weight: 500;
+    align-items: center;
+    position: relative;
+}
+.navbar-right{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+.inner-navbar-right{
+    display: flex;
+    gap: 10px;
+}
+.inner-navbar-right img{
+    font-weight: 500;
+}
+.inner-navbar-right h4{
+    font-size: 16px;
+    font-weight: 500;
+}
+.navbar-right button{
+    color: #49557e;
+    padding: 10px;
+    border-radius: 50px;
+    border: 1px solid #49557e;
+    transition: 0.3s ease;
+}
+.navbar-right button:hover{
+    color: white;
+    background: rgb(255, 145, 71);
+    border: none;
+}
+.search-icon .dot{
+    position: absolute;
+    min-width: 10px;
+    min-height: 10px;
+    background-color:  rgb(255, 145, 71);
+    border-radius: 5px;
+    top: -8px;
+    right: -8px;
+}
+.navbar-profile{
+    position: relative;
+}
+.nav-profile-dropdown{
+    position: absolute;
+    display: none;
+    right: 0;
+    z-index: 1;
+}
+.navbar-profile:hover .nav-profile-dropdown{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff2ef;
+    padding: 12px 25px;
+    border-radius: 4px;
+    border: 1px solid rgb(255, 145, 71);
+    outline: 2px solid white;
+    list-style: none;
+}
+.nav-profile-dropdown li{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+.nav-profile-dropdown img{
+    width: 20px;
+}
+.nav-profile-dropdown li:hover{
+    color: rgb(255, 145, 71);
+}
+.img{
+    width: 30px;
+}
