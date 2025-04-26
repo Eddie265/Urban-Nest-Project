@@ -27,7 +27,7 @@ const Navbar = ({ setShowLogin }) => {
                     <a href="/Shop" onClick={() => setMenu("Shop")} className={menu === "Shop" ? "active" : ""} >Shop</a>
                     <a href="#">About Us</a>
                     <a href="#">Contact</a>
-                    <button>Seller dashboard</button>
+                    {/* <button>Seller dashboard</button> */}
                 </ul>
                 <div className="navbar-right">
                     <img src={assets.search_icon} className='img' alt="" />

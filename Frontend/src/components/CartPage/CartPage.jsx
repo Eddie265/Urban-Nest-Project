@@ -27,7 +27,7 @@ const CartPage = () => {
                     {product_list.map((item, index) => {
                         if (cartItems[item._id] > 0) {
                             return (
-                                <div className='cart-items-title cart-items-item'>
+                                <div key={item._id} className='cart-items-title cart-items-item'>
                                     <img src={url+"/images/"+item.image} alt="" />
                                     <p>{item.name}</p>
                                     <p>${item.price}</p>
@@ -72,46 +72,6 @@ const CartPage = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="left">
-                <div className="text">
-                    <h2 className="your-cart">Your <span>Cart</span></h2>
-                    <h2 className="items-h2">Items</h2>
-                </div>
-                <hr />
-                <table width="100%" className='cart-items-title'>
-                    <thead>
-                        <tr>
-                            <td>Product Details</td>
-                            <td>Price</td>
-                            <td>Quantity</td>
-                            <td>Subtotal</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    
-                    </tbody>
-                </table>
-                
-
-            </div> */}
-            {/* <div className="right">
-                <h1>Order Summary</h1>
-                <hr />
-                <div className="order-detail">
-                    <p>Items</p>
-                    <h5>$5299.96</h5>
-                </div>
-                <div className="order-detail">
-                    <p>Delivery fee</p>
-                    <h5>free</h5>
-                </div>
-                <hr />
-                <div className="order-detail">
-                    <p>Total</p>
-                    <h5>$0</h5>
-                </div>
-                <button>Place Order</button>
-            </div> */}
         </div>
     )
 }
