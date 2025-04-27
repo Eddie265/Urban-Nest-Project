@@ -12,7 +12,7 @@ const App = () => {
 
   const url = "http://localhost:4000"
 
-  return (
+  return (                  
     <div>
       <ToastContainer/>
       <Navbar/>

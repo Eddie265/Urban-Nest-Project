@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './ShopProducts.css'
-import { product_list } from '../../assets/assets'
 import ShopProductItem from '../ShopProductItem/ShopProductItem'
+import { StoreContext } from '../../context/StoreContext'
 
 const ShopProducts = () => {
+  const {product_list} = useContext(StoreContext)
   return (
     <div className='product1'>
         <h2>Featured <span>Products</span></h2>
