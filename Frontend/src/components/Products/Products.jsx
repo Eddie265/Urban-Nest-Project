@@ -15,7 +15,7 @@ const Products = ({category}) => {
             })}
         </div>
         <div className="button">
-          <button>See more</button>
+          <button><a href='/Shop' >See more</a></button>
         </div>
     </div>
   )

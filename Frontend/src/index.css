@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+/* @import "tailwindcss"; */
 *{
   margin: 0;
   padding: 0;
@@ -11,6 +12,12 @@ body{
 .app{
   width: 80%;
   margin: auto;
+}
+:root{
+  --background-color : #f6f6f6;
+  --primary-text-color : #49557e;
+  --toggle-bg:#f0eb9d;
+  --toggle-fg:#ffd000;
 }
 
 @keyframes fadeIn {

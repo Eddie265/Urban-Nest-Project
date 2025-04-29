@@ -111,6 +111,9 @@
 .img{
     width: 30px;
 }
+.menu-bar{
+    display: none;
+}
 @media (max-width:1050px) {
     .logo{
         width: 140px;
@@ -180,5 +183,14 @@
     .navbar-right button{
         padding: 7px 20px;
         font-size: 15px;
+    }
+    .menu-bar{
+        color: #0025a0;
+        display: flex;
+    }
+}
+@media (max-width:513px) {
+    .navbar-right button{
+        border-radius: 25px;
     }
 }

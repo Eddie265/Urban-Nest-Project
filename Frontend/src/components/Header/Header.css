@@ -1,90 +1,142 @@
-.header{
-    height: 30vw;
-    margin: 30px auto;
-    /* background: url('/header_playstation_image.png') no-repeat; */
-    background: #e6e9f2;
-    align-content: center;
-    padding: 20px 30px;
-    border-radius: 20px;
-    background-size: contain;
+.slider-container {
     position: relative;
-}
-.header-contents{
-    animation: fadeIn 3s;
-}
-.header h4{
-    color: rgb(255, 145, 71);
-    font-size: 20px;
-    font-weight: 500;
-}
-.header h1{
-    color: #2c2c2e;
-    font-size: 40px;
+    overflow: hidden;
+    width: 100%;
+    margin-top: 24px;
+  }
+  
+  .slider-track {
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+    width: 100%;
+  }
+  
+  .slide-wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e6e9f2;
+    padding: 2rem 1.25rem;
+    border-radius: 1rem;
+    min-width: 100%;
+  }
+  .slide-buttons a{
+    text-decoration: none;
+    color: black;
+  }
+  
+  @media (min-width: 768px) {
+    .slide-wrapper {
+      flex-direction: row;
+      padding: 2rem 3.5rem;
+    }
+  }
+  
+  .slide-content {
+    padding-left: 0;
+    margin-top: 2.5rem;
+  }
+  
+  @media (min-width: 768px) {
+    .slide-content {
+      padding-left: 2rem;
+      margin-top: 0;
+    }
+  }
+  
+  .slide-offer {
+    color: #ea580c; /* Tailwind's orange-600 */
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .slide-title {
+    max-width: 32rem;
+    font-size: 1.5rem;
     font-weight: 600;
-}
-.header button{
+  }
+  
+  @media (min-width: 768px) {
+    .slide-title {
+      font-size: 2.5rem;
+      line-height: 3rem;
+    }
+  }
+  
+  .slide-buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+    gap: 1rem;
+  }
+  
+  .primary-btn {
+    padding: 0.5rem 1.75rem;
+    background-color: #ea580c;
     color: white;
-    background: rgb(255, 145, 71);
+    font-weight: 500;
+    border-radius: 9999px;
     border: none;
-    border-radius: 50px;
-    padding: 20px 20px;
-}
-.header img{
-    width: 300px;
-    position: absolute;
-    right: -8px;
-    top: 60px;
-    /* z-index: 1; */
-}
-@media (max-width:1200px) {
-    
-    .header-contents{
-        max-width: 55%;
+    cursor: pointer;
+  }
+  
+  .secondary-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.5rem;
+    font-weight: 500;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .secondary-btn img {
+    transition: transform 0.3s ease;
+  }
+  
+  .secondary-btn:hover img {
+    transform: translateX(4px);
+  }
+  
+  .slide-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-top: 1.5rem;
+  }
+  
+  .slide-img {
+    width: 12rem;
+  }
+  
+  @media (min-width: 768px) {
+    .slide-img {
+      width: 18rem;
     }
-    .header-contents h1{
-        font-size: 20px;
-    }
-    .header-contents button{
-        padding: 2vw 4vw;
-    }
-    .header-contents img{
-        width: 180px;
-        margin-top: -30px;
-    }
-}
-@media (max-width:900px) {
-    
-    .header-contents{
-        max-width: 55%;
-    }
-    .header-contents h1{
-        font-size: 20px;
-    }
-    .header-contents button{
-        padding: 2vw 4vw;
-    }
-    .header-contents img{
-        width: 180px;
-        margin-top: -30px;
-    }
-}
-@media (max-width:750px) {
-    .header{
-        height: 50vw;
-    }
-    .header-contents{
-        max-width: 65%;
-    }
-    .header-contents h1{
-        font-size: 15px;
-        font-weight: 400;
-        /* display: none; */
-    }
-    .header-contents button{
-        padding: 2vw 4vw;
-    }
-    .header-contents img{
-        width: 140px;
-        margin-top: -30px;
-    }
-}
+  }
+  
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+  }
+  
+  .dot {
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: 9999px;
+    background-color: rgba(107, 114, 128, 0.3); /* Tailwind's gray-500/30 */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .dot.active {
+    background-color: #ea580c; /* orange-600 */
+  }
+  

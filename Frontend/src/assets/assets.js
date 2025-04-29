@@ -50,20 +50,17 @@ import profile_icon from "./profile_icon.png";
 import bag_icon from "./bag_icon.png";
 import logout_icon from "./logout_icon.png";
 import parcel_icon from "./parcel_icon.png";
+import menu from "./menu.png";
+import chat from "./chat.png";
+import group from "./group.png";
+import home from "./home.png";
+import shopping from "./shopping.png"
 import product_details_page_apple_earphone_image1 from "./product_details_page_apple_earphone_image1.png";
 import product_details_page_apple_earphone_image2 from "./product_details_page_apple_earphone_image2.png";
 import product_details_page_apple_earphone_image3 from "./product_details_page_apple_earphone_image3.png";
 import product_details_page_apple_earphone_image4 from "./product_details_page_apple_earphone_image4.png";
 import product_details_page_apple_earphone_image5 from "./product_details_page_apple_earphone_image5.png";
 
-import menu_1 from './menu_1.png'
-import menu_2 from './menu_2.png'
-import menu_3 from './menu_3.png'
-import menu_4 from './menu_4.png'
-import menu_5 from './menu_5.png'
-import menu_6 from './menu_6.png'
-import menu_7 from './menu_7.png'
-import menu_8 from './menu_8.png'
 
 export const assets = {
   logo,
@@ -122,42 +119,15 @@ export const assets = {
   profile_icon,
   bag_icon,
   logout_icon,
-  parcel_icon
+  parcel_icon,
+  menu,
+  shopping,
+  home,
+  group,
+  chat
 };
 
-export const menu_list = [
-  {
-      menu_name: "Salad",
-      menu_image: menu_1
-  },
-  {
-      menu_name: "Rolls",
-      menu_image: menu_2
-  },
-  {
-      menu_name: "Deserts",
-      menu_image: menu_3
-  },
-  {
-      menu_name: "Sandwich",
-      menu_image: menu_4
-  },
-  {
-      menu_name: "Cake",
-      menu_image: menu_5
-  },
-  {
-      menu_name: "Pure Veg",
-      menu_image: menu_6
-  },
-  {
-      menu_name: "Pasta",
-      menu_image: menu_7
-  },
-  {
-      menu_name: "Noodles",
-      menu_image: menu_8
-  }]
+
 
 export const product_list = [
   {
