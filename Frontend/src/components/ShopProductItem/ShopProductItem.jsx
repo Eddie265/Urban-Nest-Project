@@ -21,7 +21,7 @@ const ShopProductItem = ({ id, userId, name, description, price, offerPrice, ima
         }
       </div>
       <p className='name1'>{name}</p>
-      <p className='disc'>{description}</p>
+      <p className='disc'>{description.length > 60 ? description.slice(0,60) + '...':description}</p>
       <div className="product-info1">
         <p className='rate1'>4.5</p>
         <img src={assets.star_icon} alt="" />

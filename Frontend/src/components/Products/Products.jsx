@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './Products.css'
 import { StoreContext } from '../../context/StoreContext'
 import ProductItem from '../ProductItems/ProductItem'
+import { Link } from 'react-router-dom'
 
 const Products = ({category}) => {
 
@@ -15,7 +16,7 @@ const Products = ({category}) => {
             })}
         </div>
         <div className="button">
-          <button><a href='/Shop' >See more</a></button>
+          <button><Link to='/Shop' >See more</Link></button>
         </div>
     </div>
   )

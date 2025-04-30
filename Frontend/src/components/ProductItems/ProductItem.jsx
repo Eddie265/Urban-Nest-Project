@@ -2,8 +2,9 @@ import React, { useContext, useState } from 'react'
 import './ProductItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
+import { Link } from 'react-router-dom'
 
-const ProductItem = ({ id, userId, name, description, price, offerPrice, image, category, date }) => {
+const ProductItem = ({ id, userId, name, description, price, offerPrice, image, category, date },props) => {
 
 
   const{cartItems,addToCart,removeFromCart,url} = useContext(StoreContext)
@@ -12,7 +13,7 @@ const ProductItem = ({ id, userId, name, description, price, offerPrice, image, 
     <div className='product-item'>
       <div className="products-item-img-container">
         <img className='heart-icon' src={assets.heart_icon} alt="" />
-        <img className='product-image' src={url+"/images/"+image} alt="" />
+        <Link to={`/product/${id}`}><img className='product-image' src={url+"/images/"+image} alt="" /></Link>
         {!cartItems[id]
           ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt="" />
           :<div className='item-container'>
@@ -24,7 +25,7 @@ const ProductItem = ({ id, userId, name, description, price, offerPrice, image, 
         }
       </div>
       <p className='name'>{name}</p>
-      <p className='disc'>{description}</p>
+      <p className='disc'>{description.length > 60 ? description.slice(0,60) + '...':description}</p>
       <div className="product-info">
         <p className='rate'>4.5</p>
         <img src={assets.star_icon} alt="" />
