@@ -13,9 +13,9 @@ const MenuBar = ({ setShowMenu }) => {
                 <img onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="" />
             </div>
             <Link to='/' onClick={() => setMenu("Home")} className={menu === "Home" ? "active" : ""} ><img src={assets.home} />Home</Link>
-            <a href="/Shop" onClick={() => setMenu("Shop")} className={menu === "Shop" ? "active" : ""}><img src={assets.shopping} />Shop</a>
-            <a href="#"><img src={assets.group} />About Us</a>
-            <a href="#"><img src={assets.chat} />Contact</a>
+            <Link to="/Shop" onClick={() => setMenu("Shop")} className={menu === "Shop" ? "active" : ""}><img src={assets.shopping} />Shop</Link>
+            <Link to="/About" onClick={() => setMenu("About")} className={menu === "About" ? "active" : ""}><img src={assets.group} />About Us</Link>
+            <Link to="/Contact" onClick={() => setMenu("Contact")} className={menu === "Contact" ? "active" : ""}><img src={assets.chat} />Contact</Link>
         </div>
     )
 }

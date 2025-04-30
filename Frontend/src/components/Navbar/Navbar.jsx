@@ -24,9 +24,9 @@ const Navbar = ({ setShowLogin, setShowMenu }) => {
                 <Link to='/'><img className='logo' src={assets.logo} alt="Web logo" /></Link>
                 <ul className='navbar-menu'>
                     <Link to='/' onClick={() => setMenu("Home")} className={menu === "home" ? "active" : ""} >Home</Link>
-                    <a href="/Shop" onClick={() => setMenu("Shop")} className={menu === "Shop" ? "active" : ""} >Shop</a>
-                    <a href="/About">About Us</a>
-                    <a href="/Contact">Contact</a>
+                    <Link to="/Shop" onClick={() => setMenu("Shop")} className={menu === "Shop" ? "active" : ""} >Shop</Link>
+                    <Link to="/About" onClick={() => setMenu("About")} className={menu === "About" ? "active" : ""} >About Us</Link>
+                    <Link to="/Contact" onClick={() => setMenu("Contact")} className={menu === "Contact" ? "active" : ""}>Contact</Link>
                     {/* <button>Seller dashboard</button> */}
                 </ul>
                 <div className="navbar-right">

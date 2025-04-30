@@ -33,7 +33,7 @@ app.get("/",(req,res)=>{
 })
 
 app.listen(port,()=>{
-    console.log(`Server started on port ${port}`)
+    console.log(`Server started on http://localhost:${port}`)
 })
 
 // mongodb+srv://mangulenjeedward:44455@cluster0.vnkxr2i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
