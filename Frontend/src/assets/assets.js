@@ -55,6 +55,8 @@ import chat from "./chat.png";
 import group from "./group.png";
 import home from "./home.png";
 import shopping from "./shopping.png"
+import phone from "./phone.png";
+import mail from "./mail.png";
 import product_details_page_apple_earphone_image1 from "./product_details_page_apple_earphone_image1.png";
 import product_details_page_apple_earphone_image2 from "./product_details_page_apple_earphone_image2.png";
 import product_details_page_apple_earphone_image3 from "./product_details_page_apple_earphone_image3.png";
@@ -124,7 +126,9 @@ export const assets = {
   shopping,
   home,
   group,
-  chat
+  chat,
+  phone,
+  mail
 };
 
 

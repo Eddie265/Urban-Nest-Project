@@ -1,7 +1,13 @@
 .logo{
-    width: 300px;
+    position: absolute;
+    width: 400px;
+    top: -10px;
+    left: -150px;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 .navbar{
+    position: relative;
     padding: 20px 0 ;
     margin: 20px;
     display: flex;
@@ -76,7 +82,24 @@
     top: -8px;
     right: -8px;
 }
-.navbar-profile{
+.search-icon .dot {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    min-width: 16px;
+    height: 16px;
+    background-color: rgb(255, 145, 71);
+    border-radius: 50%;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px;
+    line-height: 1;
+  }
+  vbar-profile{
     position: relative;
 }
 .nav-profile-dropdown{
@@ -116,7 +139,8 @@
 }
 @media (max-width:1050px) {
     .logo{
-        width: 140px;
+        left: -100px;
+        width: 300px;
     }
     .navbar-menu{
         gap: 20px;
@@ -140,7 +164,9 @@
 }
 @media (max-width:900px) {
     .logo{
-        width: 120px;
+        top: 10px;
+        left: -60px;
+        width: 200px;
     }
     .navbar-menu{
         gap: 15px;

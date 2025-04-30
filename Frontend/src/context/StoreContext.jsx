@@ -7,6 +7,7 @@ export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props) => {
 
+    const [cart,setCart] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const url = "http://localhost:4000";
     const [token, setToken] = useState("");
@@ -56,6 +57,13 @@ const StoreContextProvider = (props) => {
         return totalAmount;
     }
 
+    const getTotalQuantity = ()=> {
+        let totalQuantity = 0;
+        for (const itemId in cartItems) {
+            totalQuantity += cartItems[itemId];
+        }
+        return totalQuantity;
+    };
     const fetchFoodList = async () => {
         const response = await axios.get(url + "/api/food/list");
         setProductList(response.data.data)
@@ -86,7 +94,10 @@ const StoreContextProvider = (props) => {
         getTotalCartAmount,
         url,
         token,
-        setToken
+        setToken,
+        getTotalQuantity,
+        cart,
+        setCart
     }
     return (
         <StoreContext.Provider value={contextValue}>

@@ -1,0 +1,13 @@
+.contact img{
+    width: 10px;
+    margin-right: 10px;
+}
+.contact h1{
+    color: grey;
+    font-size: clamp(2rem, 5vw, 3rem);
+}
+.contact p{
+    margin-top: 20px;
+    color: gray;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+}

@@ -3,11 +3,11 @@ import './ShopProducts.css'
 import ShopProductItem from '../ShopProductItem/ShopProductItem'
 import { StoreContext } from '../../context/StoreContext'
 
-const ShopProducts = () => {
+const ShopProducts = ({category}) => {
   const {product_list} = useContext(StoreContext)
   return (
-    <div className='product1'>
-        <h2>Featured <span>Products</span></h2>
+    <div className='product1' id='products'>
+        <h2>All <span>Products</span></h2>
         <hr />
         <div className="products-display1">
             {product_list.map((item,index)=>{

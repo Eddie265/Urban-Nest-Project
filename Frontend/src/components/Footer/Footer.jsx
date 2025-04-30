@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className='footer'>
         <div className="left1">
-            <img className='logo' src={assets.logo} alt="" />
+            <img className='logo1' src={assets.logo} alt="" />
             <p>UrbanNest is a modern lifestyle brand that blends cutting-edge<br />technology with the latest trends in home living. From smart home innovations<br/>to stylish décor, UrbanNest creates spaces that are both functional and fashionable.<br/>Where Trends and Tech Call Home</p>
         </div>
         <div className="center2">
