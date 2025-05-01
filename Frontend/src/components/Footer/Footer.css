@@ -5,7 +5,8 @@
     margin: 20px 20px 50px 20px;
     display: flex;
     align-items: start;
-    justify-content: space-between;
+    gap: 200px;
+    /* justify-content: space-between; */
 }
 .left1 p{
     font-size: 16px;

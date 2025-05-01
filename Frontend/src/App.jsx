@@ -13,10 +13,13 @@ import MenuBar from './components/MenuBar/MenuBar'
 import About from './components/About Us/About'
 import Contact from './components/Contact/Contact'
 
-const App = () => {
-  const [showLogin, setShowLogin] = useState(false)
-  const [showMenu,setShowMenu] = useState(false)
 
+
+
+const App = () => {
+  const [showLogin, setShowLogin] = useState(false);
+  const [showMenu,setShowMenu] = useState(false);
+  
   return (
     <>
     {showMenu?<MenuBar setShowMenu={setShowMenu} />:<></>}
@@ -33,6 +36,7 @@ const App = () => {
           <Route path='/myorders' element={<MyOrders/>}/>
           <Route path='/About' element={<About/>} />
           <Route path='/Contact' element={<Contact/>} />
+         
         </Routes>
         <Footer />
       </div>

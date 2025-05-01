@@ -4,7 +4,7 @@ import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
 import { Link } from 'react-router-dom'
 
-const ProductItem = ({ id, userId, name, description, price, offerPrice, image, category, date },props) => {
+const ProductItem = ({ id, userId, name, description, price, offerPrice, image, category, date }) => {
 
 
   const{cartItems,addToCart,removeFromCart,url} = useContext(StoreContext)

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
 import { assets } from '../../assets/assets'
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const sliderData = [
@@ -58,9 +59,9 @@ const Header = () => {
                 <h1 className='slide-title'>{slide.title}</h1>
                 <div className='slide-buttons'>
                   <button className='primary-btn'>{slide.buttonText1}</button>
-                  <button className='secondary-btn'><a href="/Shop">
+                  <button className='secondary-btn'><Link to="/Shop">
                     {slide.buttonText2}
-                   </a>
+                   </Link>
                     <img src={assets.arrow_icon} alt="arrow" />
                   </button>
                 </div>

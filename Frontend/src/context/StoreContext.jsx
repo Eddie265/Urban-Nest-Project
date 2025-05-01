@@ -11,7 +11,8 @@ const StoreContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const url = "https://urban-nest-backend-pvvj.onrender.com";
     const [token, setToken] = useState("");
-    const [product_list, setProductList] = useState([])
+    const [product_list, setProductList] = useState([]);
+    
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -84,7 +85,7 @@ const StoreContextProvider = (props) => {
         }
         loadData();
     }, [])
-
+   
     const contextValue = {
         product_list,
         cartItems,
