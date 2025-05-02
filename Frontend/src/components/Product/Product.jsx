@@ -35,7 +35,7 @@ const Product = () => {
     return productData ? (
         <div className="product-page">
       <div className="product-image">
-        <img src={`https://urban-nest-backend-pvvj.onrender.com/images/${productData.image}`} alt={productData.name} />
+        <img src={`https://urban-nest-backend-pvvj.onrender.com/images/${product.image}`} alt={productData.name} />
           
       </div>
       <div className="product-details">
