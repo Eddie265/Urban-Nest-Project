@@ -35,7 +35,8 @@ const Product = () => {
     return productData ? (
         <div className="product-page">
       <div className="product-image">
-        <img src={`http://localhost:4000/images/${productData.image}`} alt={productData.name} />
+        <img src={`https://urban-nest-backend-pvvj.onrender.com/images/${productData.image}`} alt={productData.name} />
+          
       </div>
       <div className="product-details">
         <h2>{productData.name}</h2>
