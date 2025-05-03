@@ -31,7 +31,9 @@ const Product = () => {
         }
     }, [productId, product_list])
 
-    if (!productData) return <div className="product-loading">Loading...</div>;
+    if (!productData) return <div className='verify'><div className="spinner"></div></div>;
+
+    
     return productData ? (
         <div className="product-page">
       <div className="product-image">
