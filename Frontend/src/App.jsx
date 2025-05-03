@@ -12,6 +12,7 @@ import MyOrders from './pages/MyOrders/MyOrders'
 import MenuBar from './components/MenuBar/MenuBar'
 import About from './components/About Us/About'
 import Contact from './components/Contact/Contact'
+import Product from './components/Product/Product'
 
 
 
@@ -36,7 +37,7 @@ const App = () => {
           <Route path='/myorders' element={<MyOrders/>}/>
           <Route path='/About' element={<About/>} />
           <Route path='/Contact' element={<Contact/>} />
-         
+          <Route path='/product/:productId' element={<Product/>} />
         </Routes>
         <Footer />
       </div>
