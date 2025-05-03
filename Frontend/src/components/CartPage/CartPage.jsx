@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import './CartPage.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const CartPage = () => {
 
@@ -25,6 +25,7 @@ const CartPage = () => {
                     <br />
                     <hr />
                     {product_list.map((item, index) => {
+                        const itemId = item._id?.toString();
                         if (cartItems[item._id] > 0) {
                             return (
                                 <div key={item._id} className='cart-items-title cart-items-item'>
@@ -39,7 +40,7 @@ const CartPage = () => {
                         }
                     })}
                 </div>
-                <a href="/Shop">Continue Shopping</a>
+                <Link to="/Shop">Continue Shopping</Link>
                 <div className="cart-bottom">
                     <div className="cart-total">
                         <h2>Order Summary</h2>

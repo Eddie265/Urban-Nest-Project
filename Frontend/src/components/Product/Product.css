@@ -5,7 +5,12 @@
     padding: 40px 5%;
     font-family: 'Segoe UI', sans-serif;
   }
-  
+  .shop-products-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
   .product-image {
     flex: 1 1 50%;
     max-width: 500px;
@@ -24,6 +29,10 @@
     flex-direction: column;
     gap: 15px;
   }
+
+  .product-details h2{
+    color: gray;
+  }
   
   .product-description {
     color: #555;
@@ -32,12 +41,13 @@
   
   .product-price {
     font-size: 1.5rem;
-    color: #222;
+    color: #3f3d3d;
     font-weight: 600;
   }
   
   .product-meta p {
     margin: 4px 0;
+    color: rgb(58, 56, 56);
   }
   
   .product-buttons {
@@ -52,7 +62,6 @@
     font-size: 1rem;
     border: none;
     cursor: pointer;
-    border-radius: 6px;
     transition: 0.3s ease;
   }
   

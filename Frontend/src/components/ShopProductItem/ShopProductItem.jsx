@@ -2,6 +2,7 @@ import React, { useContext} from 'react'
 import './ShopProductItem.css'
 import { assets } from '../../assets/assets'
 import { StoreContext } from '../../context/StoreContext'
+import { Link } from 'react-router-dom'
 
 const ShopProductItem = ({ id, userId, name, description, price, offerPrice, image, category, date }) => {
 
@@ -10,7 +11,7 @@ const ShopProductItem = ({ id, userId, name, description, price, offerPrice, ima
     <div className='product-item'>
       <div className="products-item-img-container1">
         <img className='heart-icon' src={assets.heart_icon} alt="" />
-        <img className='product-image' src={url+"/images/"+image} alt="" />
+        <Link to={`/product/${id}`}><img className='product-image' src={url+"/images/"+image} alt="" /></Link>
         {!cartItems[id]
           ?<img className='add' onClick={()=>addToCart(id)} src={assets.add_icon_white} alt="" />
           :<div className='item-counter'>
