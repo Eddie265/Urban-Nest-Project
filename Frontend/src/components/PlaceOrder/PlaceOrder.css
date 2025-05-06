@@ -33,3 +33,56 @@
 .place-order .cart-total-button{
     margin-top: 30px;
 }
+.payment-method-select {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 16px;
+  }
+  
+  .payment-method-select label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .payment-method-select select {
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .payment-method-select select:focus {
+    border-color: #ff9147;
+    outline: none;
+    background-color: #fff;
+  }
+  .place-order-right button {
+    background-color: #1e90ff; /* Dodger blue */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .place-order-right button:hover {
+    background-color: #187bcd;
+    transform: translateY(-2px);
+  }
+  
+  .place-order-right button:active {
+    background-color: #155a9a;
+    transform: scale(0.98);
+  }
+  

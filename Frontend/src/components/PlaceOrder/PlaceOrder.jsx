@@ -6,7 +6,8 @@ import { useNavigate } from 'react-router-dom'
 
 const PlaceOrder = () => {
 
-    const { getTotalCartAmount, token, product_list, cartItems, url } = useContext(StoreContext)
+    const { getTotalCartAmount, token, product_list, cartItems, url } = useContext(StoreContext);
+    const [paymentMethod, setPaymentMethod] = useState("stripe");
 
     const [data, setData] = useState({
         firstName: "",
@@ -23,45 +24,78 @@ const PlaceOrder = () => {
     const onChangeHandler = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        setData(data=>({...data,[name]:value}))
+        setData(data => ({ ...data, [name]: value }))
     }
 
-    const placeOrder = async (event) =>{
+    const placeOrder = async (event) => {
         event.preventDefault();
         let orderItems = [];
-        product_list.map((item)=>{
-            if (cartItems[item._id]>0) {
+        product_list.map((item) => {
+            if (cartItems[item._id] > 0) {
                 let itemInfo = item;
                 itemInfo["quantity"] = cartItems[item._id]
                 orderItems.push(itemInfo)
             }
         })
         let orderData = {
-            address:data,
-            items:orderItems,
-            amount:getTotalCartAmount()+2,
+            address: data,
+            items: orderItems,
+            amount: getTotalCartAmount() + 2,
         }
-        let response = await axios.post(url+"/api/order/place",orderData,{headers:{token}});
+        let response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
         if (response.data.success) {
-            const {session_url} = response.data;
+            const { session_url } = response.data;
             window.location.replace(session_url);
         }
-        else{
+        else {
             alert("Error")
         }
-        
+
+    }
+
+    const handlePlaceOrder = async (event) => {
+        event.preventDefault();
+        let orderItems = [];
+        product_list.forEach((item) => {
+            if (cartItems[item._id] > 0) {
+                let iteminfo = { ...item, quantity: cartItems[item._id] };
+                orderItems.push(iteminfo);
+            }
+        });
+
+        let orderData = {
+            address: data,
+            items: orderItems,
+            amount: getTotalCartAmount() + 2
+        };
+        try {
+            let response = await axios.post(url + "/api/order/payChangu", orderData, { headers: { token } });
+            if (response.data.success) {
+                const { redirect_url } = response.data;
+                window.location.replace(redirect_url);
+            } else {
+                alert("Payment initiation failed.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Error");
+        }
+
     }
     const navigate = useNavigate();
-    useEffect(()=>{
+    useEffect(() => {
         if (!token) {
             navigate('/cart')
         }
-        else if(getTotalCartAmount()===0){
+        else if (getTotalCartAmount() === 0) {
             navigate('/cart')
         }
     })
+
+
+
     return (
-        <form onSubmit={placeOrder} className='place-order'>
+        <form onSubmit={paymentMethod === "stripe" ? placeOrder : handlePlaceOrder} className='place-order'>
             <div className="place-order-left">
                 <p className='title'>Delivery Information</p>
                 <div className="multi-fields">
@@ -99,7 +133,19 @@ const PlaceOrder = () => {
                             <b>$ {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
                         </div>
                     </div>
-                    <button type='submit' >PROCEED TO PAYMENT</button>
+                    <div className="payment-method-select">
+                        <label htmlFor="paymentMethod">Payment Method:</label>
+                        <select
+                            id="paymentMethod"
+                            name="paymentMethod"
+                            value={paymentMethod}
+                            onChange={(e) => setPaymentMethod(e.target.value)}
+                        >
+                            <option value="stripe"> Pay with Card (Stripe)</option>
+                            <option value="paychangu"> Mobile Money (PayChangu)</option>
+                        </select>
+                    </div>
+                    <button type='submit'>PROCEED TO PAYMENT</button>
                 </div>
             </div>
         </form>)
