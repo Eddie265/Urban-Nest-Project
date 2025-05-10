@@ -11,6 +11,20 @@
     border-radius: 50%;
     animation: rotate 1s infinite;
 }
+.verify-message {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+.verify-message.success {
+  color: green;
+}
+
+.verify-message.error {
+  color: red;
+}
+
 @keyframes rotate {
     100%{
         transform: rotate(360deg);

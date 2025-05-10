@@ -111,11 +111,11 @@ const PlaceOrder = () => {
                     })
                     window.PaychanguCheckout({
                         public_key: "pub-test-PKUkU9yJ9FDzEcEyIVl3kdpRyLuKGOot",
-                        tx_ref: '' + Math.floor((Math.random() * 1000000000) + 1),
+                        tx_ref: tx_ref,
                         amount: orderData.amount,
                         currency: "MWK",
-                        callback_url: `${url}/api/paychangu/verify?orderId=${orderId}`,
-                        return_url: `http://localhost:5174/verify?success=true&orderId=${orderId}`,
+                        callback_url: `${url}/api/order/paychangu/verify`,
+                        return_url: `${window.location.origin}/verify?success=true&orderId=${orderId}&paymentMethod=paychangu`,
                         customer: {
                             email: data.email,
                             first_name: data.firstName,

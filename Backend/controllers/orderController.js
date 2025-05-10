@@ -14,7 +14,7 @@ const placeOrder = async (req, res) => {
     const { userId, items, amount, address, paymentMethod } = req.body;
     const payChanguSecretKey = process.env.PAYCHANGU_SECRET_KEY;
 
-    
+
 
 
     try {
@@ -83,7 +83,7 @@ const verifyPayChangu = async (req, res) => {
     try {
         const response = await axios.get(`https://api.paychangu.com/transaction/verify/${tx_ref}`, {
             headers: {
-                Authorization: `Bearer${payChanguSecretKey}`,
+                Authorization: `Bearer ${payChanguSecretKey}`,
             },
         });
 
@@ -109,17 +109,29 @@ const verifyPayChangu = async (req, res) => {
 const verifyOrder = async (req, res) => {
     const { orderId, success } = req.body;
     try {
-        if (success == "true") {
-            await orderModel.findByIdAndUpdate(orderId, { payment: true });
-            res.json({ success: true, message: "Paid" })
-        }
-        else {
+        if (success === "true") {
+            // Assuming you're using PayChangu or Stripe
+            const order = await orderModel.findById(orderId);
+            if (order.paymentMethod === "PayChangu") {
+                // Trigger PayChangu verification
+                const paymentVerified = await verifyPayChangu({ tx_ref: order.tx_ref });
+                if (paymentVerified) {
+                    await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "paid" });
+                    return res.json({ success: true, message: "Paid" });
+                } else {
+                    return res.json({ success: false, message: "PayChangu Payment Verification Failed" });
+                }
+            } else if (order.paymentMethod === "stripe") {
+                await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "paid" });
+                return res.json({ success: true, message: "Paid" });
+            }
+        } else {
             await orderModel.findByIdAndDelete(orderId);
-            res.json({ success: false, message: "Not Paid" })
+            return res.json({ success: false, message: "Payment Failed" });
         }
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" })
+        res.json({ success: false, message: "Error" });
     }
 }
 // user orders for front end
