@@ -17,11 +17,18 @@ const Verify = () => {
     const [status, setStatus] = useState("loading");
 
     const verifyPayment = async () => {
+        
+         if (!success || !orderId) {
+            setMessage("❌ Missing required parameters. Redirecting...");
+            setStatus("error");
+            setTimeout(() => navigate('/'), 2000);
+            return;
+        }
 
         try {
-            if (!success || !orderId) {
-                return navigate('/');
-            }
+            // if (!success || !orderId) {
+            //     return navigate('/');
+            // }
 
             let response;
             if (paymentMethod === "paychangu") {
