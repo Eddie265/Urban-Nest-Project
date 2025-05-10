@@ -78,6 +78,9 @@ const placeOrder = async (req, res) => {
 
 const verifyPayChangu = async (req, res) => {
     const { tx_ref } = req.body;
+    console.log("✅ verifyPayChangu hit!");
+    console.log("Request method:", req.method);
+    console.log("Body:", req.body);
 
     if (!tx_ref) return res.status(400).json({ message: "Missing tx_ref" });
     try {
