@@ -119,14 +119,14 @@ const verifyOrder = async (req, res) => {
                 // Trigger PayChangu verification
                 const paymentVerified = await verifyPayChangu({ tx_ref: order.tx_ref });
                 if (paymentVerified) {
-                    await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "paid" });
-                    return res.json({ success: true, message: "Paid" });
+                    await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "Item Processing" });
+                    return res.json({ success: true, message: "Item Processing" });
                 } else {
                     return res.json({ success: false, message: "PayChangu Payment Verification Failed" });
                 }
             } else if (order.paymentMethod === "stripe") {
-                await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "paid" });
-                return res.json({ success: true, message: "Paid" });
+                await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "Item Processing" });
+                return res.json({ success: true, message: "Item Processing" });
             }
         } else {
             await orderModel.findByIdAndDelete(orderId);

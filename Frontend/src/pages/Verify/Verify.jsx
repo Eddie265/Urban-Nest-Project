@@ -19,7 +19,7 @@ const Verify = () => {
     const verifyPayment = async () => {
         
          if (!success || !orderId) {
-            setMessage("❌ Missing required parameters. Redirecting...");
+            setMessage("Missing required parameters. Redirecting...");
             setStatus("error");
             setTimeout(() => navigate('/'), 2000);
             return;
@@ -32,7 +32,7 @@ const Verify = () => {
 
             let response;
             if (paymentMethod === "paychangu") {
-                response = await axios.post(`${url}/api/paychangu/verify`, { orderId }, {
+                response = await axios.post(`${url}/api/order/verify/paychangu`, { orderId }, {
                     headers: { token }
                 });
             } else {
@@ -42,18 +42,18 @@ const Verify = () => {
             }
 
             if (response.data.success) {
-                setMessage("✅ Payment verified! Redirecting to your orders...");
+                setMessage(" Payment verified! Redirecting to your orders...");
                 setStatus("success");
                 setTimeout(() => navigate("/myorders"), 2000);
             }
             else {
-                setMessage("❌ Payment verification failed. Redirecting...");
+                setMessage(" Payment verification failed. Redirecting...");
                 setStatus("error");
                 setTimeout(() => navigate("/"), 2000);
             }
         } catch (error) {
             console.error("Verification error:", error);
-            setMessage("❌ An error occurred. Redirecting...");
+            setMessage(" An error occurred. Redirecting...");
             setStatus("error");
             setTimeout(() => navigate("/"), 2000);
         }
