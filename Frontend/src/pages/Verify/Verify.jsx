@@ -32,7 +32,7 @@ const Verify = () => {
 
             let response;
             if (paymentMethod === "paychangu") {
-                response = await axios.post(`${url}/api/order/verify/paychangu`, { orderId }, {
+                response = await axios.post(`${url}/api/order/verify`, { orderId }, {
                     headers: { token }
                 });
             } else {
