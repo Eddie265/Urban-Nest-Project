@@ -7,6 +7,7 @@ import axios from 'axios';
 const Verify = () => {
 
     const [searchParams, setSearchParams] = useSearchParams();
+    const tx_ref = searchParams.get("tx_ref");
     const success = searchParams.get("success");
     const orderId = searchParams.get("orderId");
     const paymentMethod = searchParams.get("paymentMethod") || "stripe"
@@ -17,8 +18,8 @@ const Verify = () => {
     const [status, setStatus] = useState("loading");
 
     const verifyPayment = async () => {
-        
-         if (!success || !orderId) {
+
+        if (!success || !orderId) {
             setMessage("Missing required parameters. Redirecting...");
             setStatus("error");
             setTimeout(() => navigate('/'), 2000);
@@ -32,12 +33,24 @@ const Verify = () => {
 
             let response;
             if (paymentMethod === "paychangu") {
-                response = await axios.post(`${url}/api/order/verify/paychangu`, { orderId }, {
+                if (!tx_ref) {
+                    setMessage("Missing tx_ref. Redirecting...");
+                    setStatus("error");
+                    setTimeout(() => navigate('/'), 2000);
+                    return;
+                }
+                response = await axios.post(`${url}/api/order/verify/paychangu`, { tx_ref }, {
                     headers: { token }
                 });
             } else {
+                if (!success || !orderId) {
+                    setMessage("Missing Stripe payment details. Redirecting...");
+                    setStatus("error");
+                    setTimeout(() => navigate('/'), 2000);
+                    return;
+                }
                 response = await axios.post(`${url}/api/order/verify`, { success, orderId }, {
-                    headers: { token }
+                    headers: { token },
                 });
             }
 
