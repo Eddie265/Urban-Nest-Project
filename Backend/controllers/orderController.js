@@ -78,11 +78,12 @@ const placeOrder = async (req, res) => {
 
 const verifyPayChangu = async (req, res) => {
     const { tx_ref } = req.body;
-    console.log("✅ verifyPayChangu hit!");
+    console.log(" verifyPayChangu hit!");
     console.log("Request method:", req.method);
     console.log("Body:", req.body);
 
     if (!tx_ref) return res.status(400).json({ message: "Missing tx_ref" });
+
     try {
         const response = await axios.get(`https://api.paychangu.com/transaction/verify/${tx_ref}`, {
             headers: {
@@ -92,19 +93,24 @@ const verifyPayChangu = async (req, res) => {
 
         const paymentData = response.data.data;
 
-        if (response.data.status === "success" && paymentData.status === "succesful") {
-            const updateOrder = await orderModel.findByIdAndUpdate(
+        if (response.data.status === "success" && paymentData.status === "successful") {
+            const updatedOrder = await orderModel.findOneAndUpdate(
                 { tx_ref },
                 { payment: true, paymentMethod: "PayChangu" },
                 { new: true }
             );
-            return res.status(200).json({ success: true, order: updateOrder });
+
+            if (!updatedOrder) {
+                return res.status(404).json({ success: false, message: "Order not found" });
+            }
+
+            return res.status(200).json({ success: true, order: updatedOrder });
 
         } else {
-            return res.status(400).json({ success: false, message: "Payment not successful" })
+            return res.status(400).json({ success: false, message: "Payment not successful" });
         }
     } catch (err) {
-        console.error("PayChangu verification error:", err.message);
+        console.error("PayChangu verification error:", err.response?.data || err.message);
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
 }
