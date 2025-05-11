@@ -5,12 +5,14 @@ import axios from 'axios'
 import 'dotenv/config'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-const payChanguSecretKey = process.env.PAYCHANGU_SECRET_KEY;
-const frontend_url = "https://urban-nest-7xy8.onrender.com"
-const { userId, items, amount, address, paymentMethod } = req.body;
-
+ const payChanguSecretKey = process.env.PAYCHANGU_SECRET_KEY;
 // placing user order for frontend
 const placeOrder = async (req, res) => {
+
+
+    const frontend_url = "https://urban-nest-7xy8.onrender.com"
+    const { userId, items, amount, address, paymentMethod } = req.body;
+   
 
     try {
         const tx_ref = "changu_" + Date.now();
