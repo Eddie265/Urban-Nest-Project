@@ -77,6 +77,7 @@ const PlaceOrder = () => {
         };
 
         try {
+            orderData.tx_ref = `tx-${Date.now()}`;
             const response = await axios.post(url + "/api/order/place", orderData, { headers: { token } });
             if (response.data.success) {
                 const { orderId, tx_ref } = response.data;
@@ -211,12 +212,11 @@ const PlaceOrder = () => {
 
 
     return (
-        <>
             <form onSubmit={paymentMethod === "stripe" ? placeOrder : handlePlaceOrder} className='place-order'>
                 <div className="place-order-left">
                     <p className='title'>Delivery Information</p>
                     <div className="multi-fields">
-                        <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder='Firts name' />
+                        <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder='First name' />
                         <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last name' />
                     </div>
                     <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email address' />
@@ -280,8 +280,7 @@ const PlaceOrder = () => {
                     </div>
                 </div>
             </form>
-            <div id="paychangu-container"></div>
-        </>
+            
 
     )
 }

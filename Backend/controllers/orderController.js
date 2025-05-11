@@ -76,14 +76,7 @@ const placeOrder = async (req, res) => {
     }
 }
 
-const verifyPayChangu = async (req, res) => {
-    const { tx_ref } = req.body;
-    console.log(" verifyPayChangu hit!");
-    console.log("Request method:", req.method);
-    console.log("Body:", req.body);
-
-    if (!tx_ref) return res.status(400).json({ message: "Missing tx_ref" });
-
+const verifyPayChanguTransaction = async (tx_ref) => {
     try {
         const response = await axios.get(`https://api.paychangu.com/transaction/verify/${tx_ref}`, {
             headers: {
@@ -92,57 +85,67 @@ const verifyPayChangu = async (req, res) => {
         });
 
         const paymentData = response.data.data;
-
-        if (response.data.status === "success" && paymentData.status === "successful") {
-            const updatedOrder = await orderModel.findOneAndUpdate(
-                { tx_ref },
-                { payment: true, paymentMethod: "PayChangu" },
-                { new: true }
-            );
-
-            if (!updatedOrder) {
-                return res.status(404).json({ success: false, message: "Order not found" });
-            }
-
-            return res.status(200).json({ success: true, order: updatedOrder });
-
-        } else {
-            return res.status(400).json({ success: false, message: "Payment not successful" });
-        }
+        return response.data.status === "success" && paymentData.status === "successful";
     } catch (err) {
         console.error("PayChangu verification error:", err.response?.data || err.message);
+        return false;
+    }
+};
+
+const verifyPayChangu = async (req, res) => {
+    const { tx_ref } = req.body;
+    if (!tx_ref) return res.status(400).json({ message: "Missing tx_ref" });
+
+    try {
+        const success = await verifyPayChanguTransaction(tx_ref);
+        if (!success) {
+            return res.status(400).json({ success: false, message: "Payment not successful" });
+        }
+
+        const updatedOrder = await orderModel.findOneAndUpdate(
+            { tx_ref },
+            { payment: true, paymentMethod: "PayChangu" },
+            { new: true }
+        );
+
+        if (!updatedOrder) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
+
+        return res.status(200).json({ success: true, order: updatedOrder });
+    } catch (err) {
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
-}
+};
 
 const verifyOrder = async (req, res) => {
     const { orderId, success } = req.body;
+
     try {
         if (success === "true") {
-            // Assuming you're using PayChangu or Stripe
             const order = await orderModel.findById(orderId);
+            if (!order) return res.json({ success: false, message: "Order not found" });
+
             if (order.paymentMethod === "PayChangu") {
-                // Trigger PayChangu verification
-                const paymentVerified = await verifyPayChangu({ tx_ref: order.tx_ref });
-                if (paymentVerified) {
-                    await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "Item Processing" });
-                    return res.json({ success: true, message: "Item Processing" });
-                } else {
+                const verified = await verifyPayChanguTransaction(order.tx_ref);
+                if (!verified) {
                     return res.json({ success: false, message: "PayChangu Payment Verification Failed" });
                 }
-            } else if (order.paymentMethod === "stripe") {
-                await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "Item Processing" });
-                return res.json({ success: true, message: "Item Processing" });
             }
+
+            await orderModel.findByIdAndUpdate(orderId, { payment: true, status: "Item Processing" });
+            return res.json({ success: true, message: "Item Processing" });
+
         } else {
             await orderModel.findByIdAndDelete(orderId);
             return res.json({ success: false, message: "Payment Failed" });
         }
     } catch (error) {
         console.log(error);
-        res.json({ success: false, message: "Error" });
+        return res.json({ success: false, message: "Error verifying order" });
     }
-}
+};
+
 // user orders for front end
 const userOrders = async (req, res) => {
     try {
