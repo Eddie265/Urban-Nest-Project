@@ -12,6 +12,6 @@ orderRouter.post("/userorders",authMiddleware,userOrders);
 orderRouter.get("/list",listOrders);
 orderRouter.post("/status",updateStatus);
 orderRouter.post("/verify/paychangu",verifyPayChangu);
-orderRouter.get("/verify/paychangu", verifyPayChangu);
+
 
 export default orderRouter;
