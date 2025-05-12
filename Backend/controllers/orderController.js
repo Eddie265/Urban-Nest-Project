@@ -72,35 +72,6 @@ const placeOrder = async (req, res) => {
         res.json({ success: false, message: "Error" })
     }
 }
-const handlePayChanguCallback = async (req, res) => {
-    const { tx_ref } = req.body;
-
-    if (!tx_ref) {
-        return res.status(400).json({ success: false, message: "Missing tx_ref" });
-    }
-
-    try {
-        const isValid = await verifyPayChanguTransaction(tx_ref);
-        if (!isValid) {
-            return res.status(400).json({ success: false, message: "Transaction not successful" });
-        }
-
-        const updatedOrder = await orderModel.findOneAndUpdate(
-            { tx_ref },
-            { payment: true, paymentMethod: "PayChangu", status: "Item Processing" },
-            { new: true }
-        );
-
-        if (!updatedOrder) {
-            return res.status(404).json({ success: false, message: "Order not found" });
-        }
-
-        return res.status(200).json({ success: true, message: "Callback handled", order: updatedOrder });
-    } catch (error) {
-        console.error("PayChangu callback error:", error);
-        return res.status(500).json({ success: false, message: "Internal server error" });
-    }
-};
 
 const verifyPayChanguTransaction = async (tx_ref) => {
     try {
@@ -119,8 +90,11 @@ const verifyPayChanguTransaction = async (tx_ref) => {
 };
 
 const verifyPayChangu = async (req, res) => {
-    const { tx_ref } = req.body;
-    if (!tx_ref) return res.status(400).json({ message: "Missing tx_ref" });
+    const { tx_ref } = req.query; // Read from query, not body
+
+    if (!tx_ref) {
+        return res.status(400).json({ success: false, message: "Missing tx_ref" });
+    }
 
     try {
         const success = await verifyPayChanguTransaction(tx_ref);
@@ -205,5 +179,5 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, verifyPayChangu,handlePayChanguCallback }
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, verifyPayChangu }
 
