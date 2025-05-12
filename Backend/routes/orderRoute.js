@@ -1,6 +1,6 @@
 import express from "express"
 import authMiddleware from "../middleware/auth.js"
-import { listOrders, placeOrder, updateStatus, userOrders, verifyOrder, verifyPayChangu } from "../controllers/orderController.js"
+import { handlePayChanguCallback, listOrders, placeOrder, updateStatus, userOrders, verifyOrder, verifyPayChangu } from "../controllers/orderController.js"
 
 
 
@@ -12,6 +12,6 @@ orderRouter.post("/userorders",authMiddleware,userOrders);
 orderRouter.get("/list",listOrders);
 orderRouter.post("/status",updateStatus);
 orderRouter.post("/verify/paychangu",verifyPayChangu);
-
+orderRouter.post("/paychangu-callback", handlePayChanguCallback)
 
 export default orderRouter;

@@ -5,14 +5,14 @@ import axios from 'axios'
 import 'dotenv/config'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
- const payChanguSecretKey = process.env.PAYCHANGU_SECRET_KEY;
+const payChanguSecretKey = process.env.PAYCHANGU_SECRET_KEY;
 // placing user order for frontend
 const placeOrder = async (req, res) => {
 
 
     const frontend_url = "https://urban-nest-7xy8.onrender.com"
     const { userId, items, amount, address, paymentMethod } = req.body;
-   
+
 
     try {
         const tx_ref = "changu_" + Date.now();
@@ -72,6 +72,35 @@ const placeOrder = async (req, res) => {
         res.json({ success: false, message: "Error" })
     }
 }
+const handlePayChanguCallback = async (req, res) => {
+    const { tx_ref } = req.body;
+
+    if (!tx_ref) {
+        return res.status(400).json({ success: false, message: "Missing tx_ref" });
+    }
+
+    try {
+        const isValid = await verifyPayChanguTransaction(tx_ref);
+        if (!isValid) {
+            return res.status(400).json({ success: false, message: "Transaction not successful" });
+        }
+
+        const updatedOrder = await orderModel.findOneAndUpdate(
+            { tx_ref },
+            { payment: true, paymentMethod: "PayChangu", status: "Item Processing" },
+            { new: true }
+        );
+
+        if (!updatedOrder) {
+            return res.status(404).json({ success: false, message: "Order not found" });
+        }
+
+        return res.status(200).json({ success: true, message: "Callback handled", order: updatedOrder });
+    } catch (error) {
+        console.error("PayChangu callback error:", error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};
 
 const verifyPayChanguTransaction = async (tx_ref) => {
     try {
@@ -176,5 +205,5 @@ const updateStatus = async (req, res) => {
     }
 }
 
-export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, verifyPayChangu }
+export { placeOrder, verifyOrder, userOrders, listOrders, updateStatus, verifyPayChangu,handlePayChanguCallback }
 
