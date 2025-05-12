@@ -5,14 +5,14 @@ import axios from 'axios'
 import 'dotenv/config'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
-const payChanguSecretKey = process.env.PAYCHANGU_SECRET_KEY;
+ const payChanguSecretKey = process.env.PAYCHANGU_SECRET_KEY;
 // placing user order for frontend
 const placeOrder = async (req, res) => {
 
 
     const frontend_url = "https://urban-nest-7xy8.onrender.com"
     const { userId, items, amount, address, paymentMethod } = req.body;
-
+   
 
     try {
         const tx_ref = "changu_" + Date.now();
@@ -90,16 +90,13 @@ const verifyPayChanguTransaction = async (tx_ref) => {
 };
 
 const verifyPayChangu = async (req, res) => {
-    const { tx_ref } = req.query; // Read from query, not body
-
-    if (!tx_ref) {
-        return res.status(400).json({ success: false, message: "Missing tx_ref" });
-    }
+    const { tx_ref } = req.body;
+    if (!tx_ref) return res.status(400).json({ message: "Missing tx_ref" });
 
     try {
         const success = await verifyPayChanguTransaction(tx_ref);
         if (!success) {
-            return res.redirect('/');
+            return res.status(400).json({ success: false, message: "Payment not successful" });
         }
 
         const updatedOrder = await orderModel.findOneAndUpdate(
