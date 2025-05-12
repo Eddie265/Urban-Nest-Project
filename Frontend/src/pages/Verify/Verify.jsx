@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const Verify = () => {
 
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const tx_ref = searchParams.get("tx_ref");
     const success = searchParams.get("success");
     const orderId = searchParams.get("orderId");
@@ -17,62 +17,50 @@ const Verify = () => {
     const [message, setMessage] = useState("Verifying your payment...");
     const [status, setStatus] = useState("loading");
 
+    const redirectWithMessage = (msg, type, path = "/") => {
+        setMessage(msg);
+        setStatus(type);
+        setTimeout(() => navigate(path), 2000);
+    };
+
     const verifyPayment = async () => {
 
         if (!success || !orderId) {
-            setMessage("Missing required parameters. Redirecting...");
-            setStatus("error");
-            setTimeout(() => navigate('/'), 2000);
-            return;
+            return redirectWithMessage("Missing required parameters. Redirecting...", "error");
         }
-
         try {
-            // if (!success || !orderId) {
-            //     return navigate('/');
-            // }
+
 
             let response;
             if (paymentMethod === "paychangu") {
                 if (!tx_ref) {
-                    setMessage("Missing tx_ref. Redirecting...");
-                    setStatus("error");
-                    setTimeout(() => navigate('/'), 2000);
-                    return;
+                    return redirectWithMessage("Missing tx_ref. Redirecting...", "error");
                 }
-                response = await axios.post(`${url}/api/order/verify/paychangu`, { tx_ref }, {
-                    headers: { token }
+                response = await axios.get(`${url}/api/order/verify/paychangu`, {
+                    params: { tx_ref },
+                    headers: { token },
                 });
             } else {
-                if (!success || !orderId) {
-                    setMessage("Missing Stripe payment details. Redirecting...");
-                    setStatus("error");
-                    setTimeout(() => navigate('/'), 2000);
-                    return;
-                }
-                response = await axios.post(`${url}/api/order/verify`, { success, orderId }, {
+                response = await axios.post(`${url}/api/order/verify`, {
+                    success,
+                    orderId,
+                }, {
                     headers: { token },
                 });
             }
 
             if (response.data.success) {
-                setMessage(" Payment verified! Redirecting to your orders...");
-                setStatus("success");
-                setTimeout(() => navigate("/myorders"), 2000);
-            }
-            else {
-                setMessage(" Payment verification failed. Redirecting...");
-                setStatus("error");
-                setTimeout(() => navigate("/"), 2000);
+                redirectWithMessage("Payment verified! Redirecting to your orders...", "success", "/myorders");
+            } else {
+                redirectWithMessage("Payment verification failed. Redirecting...", "error");
             }
         } catch (error) {
-            console.error("Verification error:", error);
-            setMessage(" An error occurred. Redirecting...");
-            setStatus("error");
-            setTimeout(() => navigate("/"), 2000);
+            console.error("Verification error:", error.response?.data || error.message);
+            redirectWithMessage("An error occurred. Redirecting...", "error");
         }
         // const response = await axios.post(url + "/api/order/verify", { success, orderId })
 
-    }
+    };
 
     useEffect(() => {
         verifyPayment();
