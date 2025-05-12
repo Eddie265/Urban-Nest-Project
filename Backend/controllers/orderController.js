@@ -99,7 +99,7 @@ const verifyPayChangu = async (req, res) => {
     try {
         const success = await verifyPayChanguTransaction(tx_ref);
         if (!success) {
-            return res.status(400).json({ success: false, message: "Payment not successful" });
+            return res.redirect('/');
         }
 
         const updatedOrder = await orderModel.findOneAndUpdate(
