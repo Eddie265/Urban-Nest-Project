@@ -115,7 +115,7 @@ const PlaceOrder = () => {
                         tx_ref: tx_ref,
                         amount: orderData.amount,
                         currency: "MWK",
-                        callback_url: `${url}/api/order/verify/paychangu`,
+                        callback_url: `${url}/api/order/verify/paychangu?tx_ref=${tx_ref}`,
                         return_url: `${window.location.origin}/verify?success=true&tx_ref=${tx_ref}&orderId=${orderId}&paymentMethod=paychangu`,
                         customer: {
                             email: data.email,
