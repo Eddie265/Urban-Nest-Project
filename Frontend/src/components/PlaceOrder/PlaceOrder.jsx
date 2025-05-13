@@ -10,6 +10,7 @@ const PlaceOrder = () => {
     const [paymentMethod, setPaymentMethod] = useState("stripe");
     const [payChanguLoaded, setPayChanguLoaded] = useState(false);
     const [payChanguFailed, setPayChanguFailed] = useState(false);
+    const redirectParams = `?success=true&tx_ref=${tx_ref}&paymentMethod=paychangu`;
 
     const [data, setData] = useState({
         firstName: "",
@@ -115,8 +116,8 @@ const PlaceOrder = () => {
                         tx_ref: tx_ref,
                         amount: orderData.amount,
                         currency: "MWK",
-                        callback_url: `${window.location.origin}/verify?success=true&tx_ref=${tx_ref}&paymentMethod=paychangu`,
-                        return_url: `${window.location.origin}/verify?success=true&tx_ref=${tx_ref}&paymentMethod=paychangu`,
+                        callback_url: `${window.location.origin}/orders${redirectParams}`,
+                        return_url: `${window.location.origin}/orders${redirectParams}`,
                         customer: {
                             email: data.email,
                             first_name: data.firstName,
