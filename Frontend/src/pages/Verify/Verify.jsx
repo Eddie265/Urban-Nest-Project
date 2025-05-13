@@ -19,7 +19,7 @@ const Verify = () => {
 
     const verifyPayment = async () => {
 
-        if (!success || !orderId) {
+        if (!success) {
             setMessage("Missing required parameters. Redirecting...");
             setStatus("error");
             setTimeout(() => navigate('/'), 2000);
