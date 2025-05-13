@@ -119,8 +119,8 @@ const PlaceOrder = () => {
                         tx_ref: tx_ref,
                         amount: orderData.amount,
                         currency: "MWK",
-                        callback_url: `${window.location.origin}/orders${redirectParams}`,
-                        return_url: `${window.location.origin}/orders${redirectParams}`,
+                        callback_url: `${window.location.origin}/myorders${redirectParams}`,
+                        return_url: `${window.location.origin}/myorders${redirectParams}`,
                         customer: {
                             email: data.email,
                             first_name: data.firstName,
