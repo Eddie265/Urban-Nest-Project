@@ -31,7 +31,7 @@ const Navbar = ({ setShowLogin, setShowMenu }) => {
                 </ul>
                 <div className="navbar-right">
                     <img src={assets.menu} className='menu-bar' onClick={() => setShowMenu(true)} />
-                    <img src={assets.search_icon} className='img' alt="" />
+                    {/* <img src={assets.search_icon} className='img' alt="" /> */}
                     <div className="search-icon">
                         <Link to='/Cart'><img src={assets.cart_icon} className='img' alt="cart icon" /></Link>
                         {getTotalQuantity() > 0 && (

@@ -93,7 +93,8 @@
     padding-top: 80%;
 }
 
-.banner1 button{
+.banner1 button,.banner2 button,.banner3 button{
+    text-decoration: none;
     position: absolute;
     margin-left: 10px;
     margin-top: 100%;
@@ -103,26 +104,12 @@
     color: white;
     background: rgb(255, 145, 71);
 }
-.banner2 button{
-    position: absolute;
-    margin-left: 10px;
-    margin-top: 100%;
-    border-radius: 50px;
-    padding: 10px 20px;
-    border: none;
+.banners a{
+    text-decoration: none;
     color: white;
-    background: rgb(255, 145, 71);
 }
-.banner3 button{
-    position: absolute;
-    margin-left: 10px;
-    margin-top: 100%;
-    border-radius: 50px;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    background: rgb(255, 145, 71);
-}
+
+
 @media (max-width:1200px){
     .banner1 img{
         width: 300px;

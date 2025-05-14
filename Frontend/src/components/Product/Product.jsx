@@ -22,12 +22,14 @@ const Product = ({ }) => {
     navigate('/Cart')
   }
 
-  useEffect(() => {
-    const item = product_list.find(item => item._id === productId);
-    if (item) {
-      setProductData(item);
-    }
-  }, [productId, product_list])
+ useEffect(() => {
+  window.scrollTo(0, 0); // Scroll to top when this page loads
+
+  const item = product_list.find(item => item._id === productId);
+  if (item) {
+    setProductData(item);
+  }
+}, [productId, product_list]);
 
   if (!productData) return <div className='verify'><div className="spinner"></div></div>;
 
@@ -43,7 +45,7 @@ const Product = ({ }) => {
           <h2>{productData.name}</h2>
           <p className="product-description">{productData.description}</p>
           <div className="product-price">
-            <span className="current-price">${productData.price}</span>
+            <span className="current-price">MWK {productData.price}</span>
           </div>
           <div className="product-meta">
             <p><strong>Category:</strong> {productData.category || 'Accessory'}</p>

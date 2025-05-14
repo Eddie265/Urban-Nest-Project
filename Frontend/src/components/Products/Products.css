@@ -24,7 +24,6 @@
     border-radius: 5px;
     cursor: pointer;
     padding: 10px 20px;
-    
     transition: 0.3s ease;
 }
 .button button:hover{
