@@ -41,7 +41,7 @@ const ProductItem = ({ id, name, description, price, image, category }) => {
           <Link to={`/product/${id}`} className='name'>{name}</Link>
           {category && <span className='product-category'>{category}</span>}
         </div>
-        <p className='disc'>{description.length > 60 ? description.slice(0, 60) + '...' : description}</p>
+        <p className='disc'>{description?.length > 60 ? description.slice(0, 60) + '...' : description}</p>
         <div className="product-item-bottom">
           <p className='price'>MWK {Number(price).toLocaleString()}</p>
           <span className='rate'><StarIcon size={14} /> 4.5</span>

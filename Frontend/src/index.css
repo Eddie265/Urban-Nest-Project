@@ -108,3 +108,66 @@ button{
     opacity: 1;
   }
 }
+
+/* order summary card, shared by Cart and Checkout */
+.summary-card{
+  position: sticky;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 26px;
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.summary-card h2{
+  font-size: 20px;
+  font-weight: 700;
+}
+.summary-row{
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  color: var(--ink-soft);
+}
+.summary-row.total{
+  padding-top: 14px;
+  border-top: 1px solid #e2e2e6;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.summary-card .btn-red{
+  justify-content: center;
+  width: 100%;
+}
+.summary-card .btn-red:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+.summary-note{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.summary-note svg{
+  color: var(--accent);
+}
+.page-layout{
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  align-items: start;
+  gap: 28px;
+  margin-top: 28px;
+}
+@media (max-width: 900px){
+  .page-layout{
+    grid-template-columns: 1fr;
+  }
+  .summary-card{
+    position: static;
+  }
+}

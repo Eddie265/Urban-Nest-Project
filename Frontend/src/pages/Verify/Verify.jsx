@@ -3,6 +3,7 @@ import './Verify.css'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { StoreContext } from '../../context/StoreContext';
 import axios from 'axios';
+import { CloseIcon, ShieldIcon } from '../../components/Icons/Icons';
 
 const Verify = () => {
 
@@ -78,15 +79,17 @@ const Verify = () => {
         verifyPayment();
     }, [])
     return (
-        <>
-            <div className='verify'>
-                <div className="spinner"></div>
+        <div className='verify-page'>
+            <div className={`verify-card ${status}`}>
+                {status === 'loading'
+                    ? <div className='verify'><div className="spinner"></div></div>
+                    : <span className='verify-icon'>{status === 'success' ? <ShieldIcon size={34} /> : <CloseIcon size={34} />}</span>}
+                <h2>{status === 'loading' ? 'Processing payment' : status === 'success' ? 'Payment successful' : 'Something went wrong'}</h2>
+                <div className={`verify-message ${status}`}>
+                    {message}
+                </div>
             </div>
-            <div className={`verify-message ${status}`}>
-                {message}
-            </div>
-        </>
-
+        </div>
     )
 }
 

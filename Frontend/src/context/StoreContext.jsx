@@ -67,13 +67,13 @@ const StoreContextProvider = (props) => {
     };
     const fetchFoodList = async () => {
         const response = await axios.get(url + "/api/food/list");
-        setProductList(response.data.data)
+        setProductList(Array.isArray(response.data.data) ? response.data.data : [])
     }
 
     const loadCartData = async (token) => {
         try {
            const response = await axios.post(url+"/api/cart/get",{},{headers:{token}});
-        setCartItems(response.data.cartData); 
+        setCartItems(response.data.cartData || {}); 
         } catch (error) {
             console.log("Failed to load cart data");
             localStorage.removeItem("token");

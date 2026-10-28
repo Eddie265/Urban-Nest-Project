@@ -3,6 +3,8 @@ import './PlaceOrder.css'
 import { StoreContext } from '../../context/StoreContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import PageHeader from '../PageHeader/PageHeader'
+import { ArrowRight, ShieldIcon } from '../Icons/Icons'
 
 const PlaceOrder = () => {
 
@@ -213,76 +215,79 @@ const PlaceOrder = () => {
 
 
     return (
-        <form onSubmit={paymentMethod === "stripe" ? placeOrder : handlePlaceOrder} className='place-order'>
-            <div className="place-order-left">
-                <p className='title'>Delivery Information</p>
-                <div className="multi-fields">
-                    <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder='First name' />
-                    <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last name' />
+        <div className="checkout">
+            <PageHeader
+                crumb="Checkout"
+                title="Secure"
+                accent="Checkout"
+                text="Tell us where to deliver your order, then choose how you'd like to pay."
+            />
+            <form onSubmit={paymentMethod === "stripe" ? placeOrder : handlePlaceOrder} className='place-order page-layout'>
+                <div className="place-order-left">
+                    <p className='title'><span>1</span> Delivery Information</p>
+                    <div className="multi-fields">
+                        <input required name='firstName' onChange={onChangeHandler} value={data.firstName} type="text" placeholder='First name' />
+                        <input required name='lastName' onChange={onChangeHandler} value={data.lastName} type="text" placeholder='Last name' />
+                    </div>
+                    <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email address' />
+                    <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
+                    <div className="multi-fields">
+                        <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
+                        <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='State' />
+                    </div>
+                    <div className="multi-fields">
+                        <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip code' />
+                        <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
+                    </div>
+                    <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
                 </div>
-                <input required name='email' onChange={onChangeHandler} value={data.email} type="email" placeholder='Email address' />
-                <input required name='street' onChange={onChangeHandler} value={data.street} type="text" placeholder='Street' />
-                <div className="multi-fields">
-                    <input required name='city' onChange={onChangeHandler} value={data.city} type="text" placeholder='City' />
-                    <input required name='state' onChange={onChangeHandler} value={data.state} type="text" placeholder='State' />
-                </div>
-                <div className="multi-fields">
-                    <input required name='zipcode' onChange={onChangeHandler} value={data.zipcode} type="text" placeholder='Zip code' />
-                    <input required name='country' onChange={onChangeHandler} value={data.country} type="text" placeholder='Country' />
-                </div>
-                <input required name='phone' onChange={onChangeHandler} value={data.phone} type="text" placeholder='Phone' />
-            </div>
-            <div className="place-order-right">
-                <div className="cart-total">
-                    <h2>Order Summary</h2>
-                    <div>
-                        <div className="cart-total-details">
+                <div className="place-order-right">
+                    <div className="summary-card">
+                        <h2>Order Summary</h2>
+                        <div className="summary-row">
                             <p>Subtotal</p>
                             <p>$ {getTotalCartAmount()}</p>
                         </div>
-                        <hr />
-                        <div className="cart-total-details">
+                        <div className="summary-row">
                             <p>Delivery fee</p>
                             <p>$ {getTotalCartAmount() === 0 ? 0 : 2}</p>
                         </div>
-                        <hr />
-                        <div className="cart-total-details">
+                        <div className="summary-row total">
                             <b>Total</b>
                             <b>$ {getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
                         </div>
-                    </div>
-                    <div className="payment-method-select">
-                        <label htmlFor="paymentMethod">Payment Method:</label>
-                        <select
-                            id="paymentMethod"
-                            name="paymentMethod"
-                            value={paymentMethod}
-                            onChange={(e) => setPaymentMethod(e.target.value)}
-                        >
-                            <option value="stripe"> Pay with Card (Stripe)</option>
-                            <option value="paychangu"> Mobile Money (PayChangu)</option>
-                        </select>
-                    </div>
-                    <div className="payment-method-select">
+                        <fieldset className="payment-method-select">
+                            <legend><span>2</span> Payment Method</legend>
+                            <label className={paymentMethod === "stripe" ? "selected" : ""}>
+                                <input type="radio" name="paymentMethod" value="stripe"
+                                    checked={paymentMethod === "stripe"} onChange={(e) => setPaymentMethod(e.target.value)} />
+                                <div><b>Pay with Card</b><small>Card payment via Stripe</small></div>
+                            </label>
+                            <label className={paymentMethod === "paychangu" ? "selected" : ""}>
+                                <input type="radio" name="paymentMethod" value="paychangu"
+                                    checked={paymentMethod === "paychangu"} onChange={(e) => setPaymentMethod(e.target.value)} />
+                                <div><b>Mobile Money</b><small>Mobile money via PayChangu</small></div>
+                            </label>
+                        </fieldset>
                         <button
                             type="submit"
+                            className="btn-red"
                             disabled={paymentMethod === "paychangu" && !payChanguLoaded}
                         >
                             {paymentMethod === "paychangu" && !payChanguLoaded
                                 ? "Loading PayChangu..."
-                                : "PROCEED TO PAYMENT"}
+                                : <>Proceed to payment <ArrowRight size={16} /></>}
                         </button>
                         {paymentMethod === "paychangu" && payChanguFailed && (
-                            <p style={{ color: 'red', marginTop: '10px' }}>
+                            <p className="payment-error">
                                 Failed to load PayChangu. Please check your connection or try a different method.
                             </p>
                         )}
+                        <p className="summary-note"><ShieldIcon size={16} /> Secure checkout</p>
                     </div>
                 </div>
-            </div>
-        </form>
-
-
+            </form>
+        </div>
     )
 }
 
