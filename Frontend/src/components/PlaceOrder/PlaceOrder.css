@@ -20,7 +20,7 @@
     padding: 10px;
     border: 1px solid #c5c5c5;
     border-radius: 4px;
-    outline-color: rgb(255, 145, 71);
+    outline-color: var(--accent);
 }
 .place-order-left .multi-fields{
     display: flex;
@@ -57,12 +57,12 @@
   }
   
   .payment-method-select select:focus {
-    border-color: #ff9147;
+    border-color: var(--accent);
     outline: none;
     background-color: #fff;
   }
   .place-order-right button {
-    background-color: #1e90ff; /* Dodger blue */
+    background-color: var(--accent);
     color: white;
     border: none;
     padding: 12px 20px;
@@ -77,12 +77,12 @@
   }
   
   .place-order-right button:hover {
-    background-color: #187bcd;
+    background-color: var(--accent-dark);
     transform: translateY(-2px);
   }
   
   .place-order-right button:active {
-    background-color: #155a9a;
+    background-color: var(--accent-dark);
     transform: scale(0.98);
   }
   

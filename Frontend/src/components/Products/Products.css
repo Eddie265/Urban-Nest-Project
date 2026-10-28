@@ -1,36 +1,28 @@
 .products{
-    margin-top: 30px;
+    margin-top: 44px;
     animation: fadeIn 1s;
 }
-.products h2{
-    font-size: max(1.5vw,24px);
-    font-weight: 500;
-}
-.product-display{
+.product-display,
+.product-skeletons{
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(200px,1fr));
-    margin-top: 30px;
-    gap: 30px;
-    row-gap: 50px;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 18px;
 }
-.button{
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.product-skeleton{
+    aspect-ratio: 3 / 4;
+    border-radius: var(--radius);
+    background: linear-gradient(100deg, var(--surface) 30%, #ececf0 50%, var(--surface) 70%);
+    background-size: 300% 100%;
+    animation: shimmer 1.4s infinite linear;
 }
-.button button{
-    border: 1px solid #e6e9f2;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 10px 20px;
-    transition: 0.3s ease;
+@keyframes shimmer {
+    from{ background-position: 100% 0; }
+    to{ background-position: 0 0; }
 }
-.button button:hover{
-    background: #e0e0e0;
-}
-.button a {
-    text-decoration: none;
-    color: #6c6e72;
-    font-size: max(1vw,18px);
+@media (max-width: 500px){
+    .product-display,
+    .product-skeletons{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
 }

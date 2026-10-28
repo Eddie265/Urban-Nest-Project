@@ -1,150 +1,97 @@
-.banners{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.Banner{
+    margin-top: 44px;
     animation: fadeIn 1s;
 }
-.Banner{
-    margin-top: 30px;
-    margin-bottom: 30px;
+.banners{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
 }
-.banner1 img{
-    width: 400px;
-}
-.banner2 img{
-    width: 400px;
-}
-.banner3 img{
-    width: 400px;
-}
-.Banner h4{
-    color: #303030;
-    font-size: 35px;
-    font-weight: 500;
-    text-align: center;
-}
-.banner1{
+.idea-card{
     position: relative;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-.banner2{
-    position: relative;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-.banner3{
-    position: relative;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-}
-.banner1 h3{
-    padding: 10px;
-    color: white;
-    position: absolute;
-    padding-top: 70%;
-    font-size: 20px;
-    font-weight: 500;
-}
-.banner2 h3{
-    padding: 10px;
-    color: white;
-    position: absolute;
-    padding-top: 70%;
-    font-size: 20px;
-    font-weight: 500;
-}
-.banner3 h3{
-    padding: 10px;
-    color: white;
-    position: absolute;
-    padding-top: 70%;
-    font-size: 20px;
-    font-weight: 500;
-}
-.banner1 p{
-    padding: 10px;
-    position: absolute;
-    color: white;
-    font-size: 16px;
-    font-weight: 300;
-    padding-top: 80%;
-}
-.banner2 p{
-    padding: 10px;
-    position: absolute;
-    color: white;
-    font-size: 16px;
-    font-weight: 300;
-    padding-top: 80%;
-}
-.banner3 p{
-    padding: 10px;
-    position: absolute;
-    color: white;
-    font-size: 16px;
-    font-weight: 300;
-    padding-top: 80%;
-}
-
-.banner1 button,.banner2 button,.banner3 button{
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    border-radius: var(--radius);
     text-decoration: none;
+    color: var(--white);
+}
+.idea-card.tone-red{ background: radial-gradient(circle at 70% 25%, #ff6b6b, #b5121a 75%); }
+.idea-card.tone-dark{ background: radial-gradient(circle at 70% 25%, #4a4a52, #121214 75%); }
+.idea-card.tone-slate{ background: radial-gradient(circle at 70% 25%, #8a96a8, #2c3440 75%); }
+.idea-card.tone-violet{ background: radial-gradient(circle at 70% 25%, #8b5cf6, #1e1240 75%); }
+.idea-card.tone-warm{ background: radial-gradient(circle at 70% 25%, #f2c9a0, #6b4a33 75%); }
+.idea-card img{
     position: absolute;
-    margin-left: 10px;
-    margin-top: 100%;
-    border-radius: 50px;
-    padding: 10px 20px;
-    border: none;
-    color: white;
-    background: rgb(255, 145, 71);
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 0.5s ease;
 }
-.banners a{
-    text-decoration: none;
-    color: white;
+.idea-card:hover img{
+    transform: scale(1.06);
 }
-
-
-@media (max-width:1200px){
-    .banner1 img{
-        width: 300px;
-    }
-    .banner2 img{
-        width: 300px;
-    }
-    .banner3 img{
-        width: 300px;
+.idea-card::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0) 55%);
+}
+.idea-card-text{
+    position: absolute;
+    z-index: 1;
+    left: 14px;
+    right: 48px;
+    bottom: 14px;
+}
+.idea-card-text h3{
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.idea-card-text p{
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 3px;
+}
+.idea-card-arrow{
+    position: absolute;
+    z-index: 1;
+    right: 12px;
+    bottom: 14px;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--ink);
+}
+@media (max-width: 1050px){
+    .banners{
+        grid-template-columns: repeat(3, 1fr);
     }
 }
-
-@media (max-width:1050px){
-    .banner1 img{
-        width: 200px;
+@media (max-width: 600px){
+    .banners{
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
     }
-    .banner2 img{
-        width: 200px;
-    }
-    .banner3 img{
-        width: 200px;
-    }
-    .banner1 h3,.banner2 h3,.banner3 h3{
-        font-size: 10px;
-    }
-    .banner1 p,.banner2 p,.banner3 p{
-        font-size: 10px;
-    }
-    .banner1 button,.banner2 button,.banner3 button{
-        padding: 8px 12px;
-        margin-top: 210px;
-    }
-}
-@media (max-width:750px){
-    .Banner{
+    .banners::-webkit-scrollbar{
         display: none;
     }
+    .idea-card{
+        flex: 0 0 62%;
+        scroll-snap-align: start;
+    }
+}
+.idea-card.cutout img{
+    object-fit: contain;
+    object-position: center;
+    padding: 14% 12% 34%;
+    filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.35));
 }

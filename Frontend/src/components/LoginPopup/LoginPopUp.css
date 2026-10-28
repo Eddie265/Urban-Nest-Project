@@ -46,7 +46,7 @@
     padding: 10px;
     border-radius: 4px;
     color: white;
-    background-color: rgb(255, 145, 71);
+    background-color: var(--accent);
     font-size: 15px;
     cursor: pointer;
 }
@@ -60,7 +60,42 @@
     margin-top: 5px;
 }
 .login-popup p span{
-    color: rgb(255, 145, 71);
+    color: var(--accent);
     font-weight: 500;
     cursor: pointer;
+}
+/* ---- refreshed look ---- */
+.login-popup{
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    background: rgba(18, 18, 18, 0.4);
+    backdrop-filter: blur(6px);
+}
+.login-popup-container{
+    border-radius: 18px;
+    padding: 28px 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+.login-popup-title h2{
+    font-size: 22px;
+    font-weight: 700;
+}
+.login-popup-inputs input{
+    border-color: var(--line);
+    background: var(--surface);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+.login-popup-inputs input:focus{
+    background: var(--white);
+    border-color: var(--accent);
+}
+.login-popup-container button{
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+}
+.login-popup-container button:hover{
+    background-color: var(--accent-dark);
 }

@@ -28,7 +28,7 @@
     font-weight: 600;
 }
 .detail span{
-    color: rgb(255, 145, 71);
+    color: var(--accent);
 }
 .img{
     display: flex;
@@ -42,7 +42,7 @@
     margin: 10px;
 }
 .your-cart span{
-    color: rgb(255, 145, 71);
+    color: var(--accent);
 }
 .text h2{
     font-size: 35px;
@@ -72,7 +72,7 @@ table td{
 .cart a{
     display: flex;
     margin-top: 40px;
-    color: rgb(255, 145, 71);
+    color: var(--accent);
     text-decoration: none;
     cursor: pointer;
 }
@@ -107,7 +107,7 @@ table td{
 .right button{
     font-size: 16px;
     font-weight: 500;
-    background: rgb(255, 145, 71);
+    background: var(--accent);
     border: none;
     color: white;
     padding: 20px;
@@ -164,7 +164,7 @@ table td{
 .cart-total button{
     border: none;
     color: white;
-    background-color: rgb(255, 145, 71);
+    background-color: var(--accent);
     width: max(15vw,200px);
     padding: 12px 0px;
     border-radius: 4px;
@@ -208,4 +208,61 @@ table td{
     .cart-promocode{
         justify-content: start;
     }
+}
+/* ---- refreshed look ---- */
+.cart{
+    margin-top: 40px;
+}
+.cart-items-title{
+    color: var(--ink-soft);
+}
+.cart-items-item{
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+}
+.cart-items-item img{
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    padding: 6px;
+    border-radius: 12px;
+    background: var(--surface);
+}
+.cart-items-item p:last-child{
+    color: var(--accent);
+    font-weight: 600;
+}
+.cart > hr{
+    border: none;
+    border-top: 1px solid var(--line);
+}
+.cart-total{
+    padding: 26px;
+    border-radius: var(--radius);
+    background: var(--surface);
+}
+.cart-total h2{
+    color: var(--ink);
+    font-size: 22px;
+}
+.cart-total hr{
+    height: 1px;
+    background-color: var(--line);
+}
+.cart-total button{
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.2s ease;
+}
+.cart-total button:hover{
+    background-color: var(--accent-dark);
+}
+.cart-promocode-input{
+    background-color: var(--surface);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+}
+.cart-promocode-input button{
+    background-color: var(--ink);
 }

@@ -80,7 +80,7 @@
 }
 .btn2{
     border: none;
-    background: rgb(255, 145, 71);
+    background: var(--accent);
     color: white;
     /* border-radius: 15px; */
     font-size: 15px;

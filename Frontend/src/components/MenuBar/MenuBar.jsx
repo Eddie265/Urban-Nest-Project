@@ -1,21 +1,24 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import './MenuBar.css'
 import { assets } from '../../assets/assets';
+import { CloseIcon } from '../Icons/Icons';
 
 const MenuBar = ({ setShowMenu }) => {
 
-    const [menu, setMenu] = useState("home");
-    
+    const close = () => setShowMenu(false);
+
     return (
-        <div className='menu-bar-popup'>
-            <div className="cross-icon">
-                <img onClick={() => setShowMenu(false)} src={assets.cross_icon} alt="" />
-            </div>
-            <Link to='/' onClick={() => setMenu("Home")} className={menu === "Home" ? "active" : ""} ><img src={assets.home} />Home</Link>
-            <Link to="/Shop" onClick={() => setMenu("Shop")} className={menu === "Shop" ? "active" : ""}><img src={assets.shopping} />Shop</Link>
-            <Link to="/About" onClick={() => setMenu("About")} className={menu === "About" ? "active" : ""}><img src={assets.group} />About Us</Link>
-            <Link to="/Contact" onClick={() => setMenu("Contact")} className={menu === "Contact" ? "active" : ""}><img src={assets.chat} />Contact</Link>
+        <div className='menu-bar-overlay' onClick={close}>
+            <nav className='menu-bar-popup' onClick={(e) => e.stopPropagation()}>
+                <div className="cross-icon">
+                    <button onClick={close} aria-label="Close menu"><CloseIcon size={22} /></button>
+                </div>
+                <NavLink to='/' end onClick={close}><img src={assets.home} alt="" />Home</NavLink>
+                <NavLink to="/Shop" onClick={close}><img src={assets.shopping} alt="" />Shop</NavLink>
+                <NavLink to="/About" onClick={close}><img src={assets.group} alt="" />About Us</NavLink>
+                <NavLink to="/Contact" onClick={close}><img src={assets.chat} alt="" />Contact</NavLink>
+            </nav>
         </div>
     )
 }
